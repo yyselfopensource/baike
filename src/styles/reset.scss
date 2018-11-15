@@ -1,0 +1,32 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+img {
+  width: 100%;
+  height: 100%;
+}
+body {
+  font-size: 12px;
+  background-color: #fff;
+}
+button {
+  border-width: 0;
+}
+.van-popup--top {
+  background-color: transparent;
+}
+.van-pull-refresh {
+  // 这样设置是为了让下拉时不会有被边界限制的视觉效果，也是为了空数据的图片能正常显示
+  // 但是带来一个问题是在有的地方下拉时，顶部的下拉刷新字样层级会比比较高
+  // 需要为它之前的元素设置额外的层级
+  // 另一个办法是设定下拉刷新容器的高度，想来想去还是采取第一种
+  overflow: visible;
+}
+.van-pull-refresh-container {
+  overflow: hidden;
+  min-height: 100vh;
+}
