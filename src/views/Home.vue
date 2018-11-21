@@ -1,6 +1,22 @@
 <template>
   <div class="home">
-    主页
+    <div class="doudou-loading-wrapper">
+      <div class="mouth">
+        <div class="doudou-loading-semi-circle top">
+          <div></div>
+        </div>
+        <div class="doudou-loading-semi-circle bottom">
+          <div></div>
+        </div>
+      </div>
+      <ul class="dots-container flex flex-between-center">
+        <li
+          v-for="index in 8"
+          class="dot"
+          :key="index">
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -19,6 +35,9 @@ export default {
   methods: {
   },
   created () {
+  },
+  mounted () {
+
   }
 }
 </script>
@@ -26,18 +45,4 @@ export default {
 <style lang="scss" scoped>
 @import 'src/styles/functions.scss';
 
-.home {
-  .swipe-img-container {
-    height: rrem(488px);
-  }
-  .tabs-container {
-    padding-right: rrem(120px);
-    @media screen and(min-width: 375px){
-      padding-right: rrem(230px);
-    }
-    /deep/ .van-tab--active {
-      font-size: 16px;
-    }
-  }
-}
 </style>

@@ -31,7 +31,7 @@ import './styles/index.scss'
  * 同时对app的高度进行限定为初始窗口的100%，避免输入框引起的变化
  */
 function setRootSize () {
-  const designWidth = 1125
+  const designWidth = 750
   document.documentElement.style.fontSize = `${document.documentElement.offsetWidth / designWidth * 100}px`
 
   document.querySelector('#app').style.height = `${window.innerHeight}px`

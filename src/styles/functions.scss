@@ -1,3 +1,30 @@
 @function rrem($px) {
   @return ($px / 100px) + rem
 }
+
+@mixin squal($width) {
+  width: $width;
+  height: $width;
+}
+
+@mixin circle($width) {
+  width: $width;
+  height: $width;
+  border-radius: $width;
+}
+@mixin semi-circle($width, $class) {
+  position: relative;
+  width: $width;
+  // rem没法除，不知道为啥，暂时也不管
+  height: calc(#{$width} / 2);
+  overflow: hidden;
+  #{$class} {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: $width;
+    height: $width;
+    border-radius: $width;
+  }
+  
+}

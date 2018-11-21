@@ -4,10 +4,33 @@ import Home from './views/Home.vue'
 
 Vue.use(Router)
 
+const req = require.context('./views/threejs', false, /\.vue$/)
+const requireAll = requireContext => requireContext.keys().map(requireContext)
+const chapters = requireAll(req)
+const chapterRoutes = []
+const chapterMenus = []
+req.keys().forEach((key, index) => {
+  chapterRoutes.push({
+    path: `/three/${key.replace('./', '').replace('.vue', '')}`,
+    name: `/three/${key.replace('./', '').replace('.vue', '')}`,
+    component: chapters[index].default,
+    meta: {
+      title: chapters[index].default.title
+    }
+  })
+  chapterMenus.push({
+    path: chapterRoutes[index].path,
+    name: chapterRoutes[index].name,
+    title: chapterRoutes[index].meta.title
+  })
+})
+
+export const menus = chapterMenus
 const router = new Router({
   mode: 'history',
   base: '/frontend',
   routes: [
+    ...chapterRoutes,
     {
       path: '/',
       name: 'home',

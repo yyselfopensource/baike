@@ -2,6 +2,14 @@
   <div
     v-if="showApp"
     id="app">
+    <van-tabs
+      v-model="activeTab">
+      <van-tab
+        v-for="tab in tabs"
+        :key="tab.title"
+        :title="tab.title">
+      </van-tab>
+    </van-tabs>
     <keep-alive>
       <router-view v-if="$route.meta.keepAlive"/>
     </keep-alive>
@@ -11,13 +19,15 @@
 
 <script>
 import { mapMutations } from 'vuex'
-
+import { menus } from './router'
 export default {
   components: {
   },
   data () {
     return {
-      showApp: false
+      showApp: false,
+      activeTab: 0,
+      tabs: menus
     }
   },
   methods: {
@@ -42,6 +52,11 @@ export default {
   created () {
     this.login()
   },
+  watch: {
+    activeTab (newTab) {
+      this.$router.push(this.tabs[newTab])
+    }
+  },
   mounted () {
     window.keepScroll = {
       scrollElements: {},
@@ -59,7 +74,7 @@ export default {
 $bottom-height: 50px;
 #app {
   position: relative;
-  padding-bottom: $bottom-height;
+  // padding-bottom: $bottom-height;
   height: 100vh;
   widows: 100vw;
   overflow: auto;
